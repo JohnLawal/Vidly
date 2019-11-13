@@ -6,11 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": "https://github.com/JohnLawal/Vidly.git",
   "author": "John Lawal",
   "license": "ISC",
   "dependencies": {
     "config": "^3.2.4",
     "express": "^4.17.1",
+    "fawn": "^2.1.5",
     "joi": "^14.3.1",
     "mongoose": "^5.7.7"
   }

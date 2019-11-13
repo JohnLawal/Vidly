@@ -3,6 +3,10 @@ const { Rental, validateRental } = require('../models/rental');
 const { Movie } = require('../models/movies');
 const { Customer } = require('../models/customers');
 const dbDebugger = require('debug')('app:db');
+const mongoose = require('mongoose');
+const Fawn = require('fawn');
+
+Fawn.init(mongoose);
 
 const router = express.Router();
 
@@ -52,11 +56,20 @@ router.post('/', async (req, res) => {
             }
         });
 
-        rental = await rental.save();
+        // rental = await rental.save();
 
-        movie.numberInStock--;
-        movie.save();
+        // movie.numberInStock--;
+        // movie.save();
 
+        try {
+            new Fawn.Task()
+                .save('rentals', rental)
+                .update('movies', { _id: movie._id }, {
+                    $inc: { numberInStock: -1 }
+                }).run();
+        } catch (exception) {
+            return res.status(500).send('Transaction Error');
+        }
 
         res.send(rental);
     } catch (exception) {
