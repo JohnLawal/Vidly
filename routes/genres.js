@@ -1,5 +1,5 @@
 const express = require('express');
-const { Genre, validateGenre } = require('../models/genres');
+const { Genre, validateGenre } = require('../models/genre');
 const dbDebugger = require('debug')('app:db');
 
 const router = express.Router();
@@ -33,8 +33,8 @@ router.post('/', async (req, res) => {
     const genre = new Genre(req.body);
 
     try {
-        const savedGenre = await genre.save();
-        res.send(savedGenre);
+        await genre.save();
+        res.send(genre);
     } catch (exception) {
         res.send(exception.message);
     }

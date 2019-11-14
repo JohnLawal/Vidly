@@ -1,5 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);//adding a new property to JOI which is a method
+
 const config = require('config');
 const dbDebugger = require('debug')('app:db');
 const consoleDebugger = require('debug')('app:clg');

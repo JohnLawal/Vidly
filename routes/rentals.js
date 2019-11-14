@@ -1,7 +1,7 @@
 const express = require('express');
 const { Rental, validateRental } = require('../models/rental');
-const { Movie } = require('../models/movies');
-const { Customer } = require('../models/customers');
+const { Movie } = require('../models/movie');
+const { Customer } = require('../models/customer');
 const dbDebugger = require('debug')('app:db');
 const mongoose = require('mongoose');
 const Fawn = require('fawn');

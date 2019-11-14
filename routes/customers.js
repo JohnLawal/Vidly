@@ -1,5 +1,5 @@
 const express = require('express');
-const { Customer, validateCustomer } = require('../models/customers');
+const { Customer, validateCustomer } = require('../models/customer');
 const dbDebugger = require('debug')('app:db');
 
 const router = express.Router();
@@ -32,8 +32,8 @@ router.post('/', async (req, res) => {
     const customer = new Customer(req.body);
 
     try {
-        const savedcustomer = await customer.save();
-        res.send(savedcustomer);
+        await customer.save();
+        res.send(customer);
     } catch (exception) {
         res.send(exception.message);
     }
